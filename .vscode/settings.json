@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/*.tsbuildinfo": true,
+        "package-lock.json": true,
+        "{demo/*,global,modular}.{d.ts,d.ts.map,js.map}": true,
+    },
+    "editor.rulers": [120]
+}

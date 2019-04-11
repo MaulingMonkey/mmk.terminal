@@ -1,0 +1,58 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+    },
+    "windows": {
+        "options": {
+            "env": {
+                "PATH": "${workspaceFolder}\\node_modules\\.bin;${env:PATH}",
+            }
+        }
+    },
+    "tasks": [
+        // Auto watch
+        {
+            "group": "build",
+            "label": "Auto Watch:  Build typescript",
+            "type": "shell",
+            "command": "tsc -b -w src demo",
+            "problemMatcher": ["$tsc-watch"],
+            "isBackground": true,
+            "runOptions": { "runOn": "folderOpen" }
+        },
+        {
+            "group": "build",
+            "label": "Auto Watch:  Build modular library",
+            "type": "shell",
+            "command": "modularize-namespace --watch global.js --output modular.js --namespace mmk.terminal",
+            "problemMatcher": [],
+            "isBackground": true,
+            "runOptions": { "runOn": "folderOpen" }
+        },
+
+        // Manual Build Tasks
+        { "group": "build", "label": "Build documentation", "type": "shell", "command": "${workspaceFolder}\\build\\docs.cmd ${input:docs-github-tag}", "problemMatcher": [] },
+        { "group": "build", "label": "Build typescript",    "type": "shell", "command": "${workspaceFolder}\\build\\typescript.cmd", "problemMatcher": ["$tsc"] },
+
+        // Utility Tasks
+        { "label": "Open local demo",           "type": "shell", "command": "start \"\" \"${workspaceFolder}\\demo\\index.html\"", "problemMatcher": [] },
+        { "label": "Open local documentation",  "type": "shell", "command": "start \"\" \"${workspaceFolder}\\docs\\index.html\"", "problemMatcher": [], "dependsOn": ["Build documentation"] },
+        { "label": "Open GitHub",               "type": "shell", "command": "start \"\" \"https://github.com/MaulingMonkey/mmk.terminal\"", "problemMatcher": [] },
+        { "label": "Open GitHub Issues",        "type": "shell", "command": "start \"\" \"https://github.com/MaulingMonkey/mmk.terminal/issues\"", "problemMatcher": [] },
+        { "label": "Open online demo",          "type": "shell", "command": "start \"\" \"https://maulingmonkey.com/mmk.terminal/demo\"", "problemMatcher": [] },
+        { "label": "Open online documentation", "type": "shell", "command": "start \"\" \"https://maulingmonkey.com/mmk.terminal/docs\"", "problemMatcher": [] },
+    ],
+    "inputs": [
+        {
+            "id": "docs-github-tag",
+            "description": "A github tag to use for the documentation such as v0.0.2",
+            "type": "promptString",
+        }
+    ]
+}

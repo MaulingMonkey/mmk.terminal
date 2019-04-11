@@ -1,0 +1,34 @@
+{
+    "name": "@maulingmonkey/terminal",
+    "version": "0.0.1",
+    "description": "Terminal rendering API for roguelikes, fake OSes, or whatever else.",
+    "license": "Apache-2.0",
+    "keywords": [
+        "browser",
+        "console",
+        "terminal",
+        "retro",
+        "webgl",
+        "typescript"
+    ],
+    "author": "MaulingMonkey <npm@maulingmonkey.com> (https://maulingmonkey.com/)",
+    "bugs": "https://github.com/MaulingMonkey/mmk.terminal/issues",
+    "homepage": "https://github.com/MaulingMonkey/mmk.terminal#readme",
+    "repository": "github:MaulingMonkey/mmk.terminal",
+    "browser": "global.js",
+    "types": "global.d.ts",
+    "main": "global.js",
+    "files": [
+        "global.d.ts",
+        "global.js",
+        "LICENSE.txt",
+        "modular.d.ts",
+        "modular.js",
+        "Readme.md"
+    ],
+    "devDependencies": {
+        "@maulingmonkey/modularize-namespace": "0.0.3",
+        "typedoc": "^0.14.2",
+        "typedoc-plugin-sourcefile-url": "^1.0.4"
+    }
+}

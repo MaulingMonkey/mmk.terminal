@@ -1,0 +1,12 @@
+{
+    "extends": "../tsconfig.common.json",
+    "compilerOptions": {
+        "outFile": "..\\global.js",
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+    },
+    "include": [
+        "**\\*.ts",
+    ],
+}

@@ -1,0 +1,12 @@
+/.projnfo/
+/demo/*.js
+/demo/*.js.map
+/docs/
+/node_modules/
+
+/global.*
+/modular.*
+/package-lock.json
+
+*.tgz
+*.tsbuildinfo
