@@ -1,7 +1,4 @@
 /.projnfo/
-/demo/*.js
-/demo/*.js.map
-/docs/
 /node_modules/
 
 /global.*
