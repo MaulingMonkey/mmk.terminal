@@ -1,4 +1,5 @@
-const ref = `
+namespace demos.block_art {
+    const ref = `
 
 
 
@@ -25,54 +26,55 @@ const ref = `
 #BB0                                                                          \xEA         Yellow omegas are ZZT monkeys, right?
 `;
 
-interface Line {
-    text:       string;
-    foreground: string;
-    background: string;
-}
-
-const lines : Line[] = [];
-
-for (const line of ref.split('\n')) {
-    const m = /^(#[0-9a-f]+)(.*)$/i.exec(line);
-    lines.push({
-        text:       m ? m[2] : line,
-        foreground: m ? m[1] : '#FFF',
-        background: '#000',
-    });
-}
-
-interface Remap {
-    text:           string;
-    foreground?:    string;
-    background?:    string;
-}
-
-const remap : {[ch: string]: Remap} = {
-    '#':  { text: '\xDB' },
-    '\'': { text: '\xDF' },
-    '_':  { text: '\xDC' },
-    '-':  { text: '\xC4' },
-    '+':  { text: '\xD7' },
-};
-
-addEventListener("load", function() {
-    const c = new mmk.terminal.WebGLTerminalCanvas({ canvas: "block-art", background: '#000' });
-
-    function render () {
-        requestAnimationFrame(render);
-
-        for (let y=0; y<lines.length; ++y) {
-            const line = lines[y];
-            for (let x=0; x<line.text.length; ++x) {
-                let text = line.text[x];
-                const r = remap[text] || {};
-                c.set(x, y, r.text || text, r.foreground || line.foreground, r.background || line.background);
-            }
-        }
-
-        c.tryRender();
+    interface Line {
+        text:       string;
+        foreground: string;
+        background: string;
     }
 
-    time("First render", render);
-});
+    const lines : Line[] = [];
+
+    for (const line of ref.split('\n')) {
+        const m = /^(#[0-9a-f]+)($|[ ].*$)/i.exec(line);
+        lines.push({
+            text:       m ? m[2] : line,
+            foreground: m ? m[1] : '#FFF',
+            background: '#000',
+        });
+    }
+
+    interface Remap {
+        text:           string;
+        foreground?:    string;
+        background?:    string;
+    }
+
+    const remap : {[ch: string]: Remap} = {
+        '#':  { text: '\xDB' },
+        '\'': { text: '\xDF' },
+        '_':  { text: '\xDC' },
+        '-':  { text: '\xC4' },
+        '+':  { text: '\xD7' },
+    };
+
+    addEventListener("load", function() {
+        const c = new mmk.terminal.WebGLTerminalCanvas({ canvas: "block-art", background: '#000' });
+
+        function render () {
+            requestAnimationFrame(render);
+
+            for (let y=0; y<lines.length; ++y) {
+                const line = lines[y];
+                for (let x=0; x<line.text.length; ++x) {
+                    let text = line.text[x];
+                    const r = remap[text] || {};
+                    c.set(x, y, r.text || text, r.foreground || line.foreground, r.background || line.background);
+                }
+            }
+
+            c.tryRender();
+        }
+
+        time("block-art:  First blit + render", render);
+    });
+}
