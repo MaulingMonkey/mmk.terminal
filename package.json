@@ -27,6 +27,7 @@
         "Readme.md"
     ],
     "devDependencies": {
+        "@maulingmonkey/keyboard": "0.0.3",
         "@maulingmonkey/modularize-namespace": "0.0.3",
         "typedoc": "^0.14.2",
         "typedoc-plugin-sourcefile-url": "^1.0.4"
