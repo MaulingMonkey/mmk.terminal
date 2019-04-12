@@ -1,4 +1,6 @@
-﻿
+﻿![block-art Screenshot](https://raw.githubusercontent.com/MaulingMonkey/mmk.terminal/master/.projnfo/screenshots/block-art.png)
+![rl-maze Screenshot](https://raw.githubusercontent.com/MaulingMonkey/mmk.terminal/master/.projnfo/screenshots/rl-mzae.png)
+
 # mmk.terminal
 
 <strong>M</strong>auling<strong>M</strong>on<strong>k</strong>ey's terminal rendering API for roguelikes, fake OSes, or whatever else.
@@ -17,3 +19,7 @@
   ```cmd
   npm i @maulingmonkey/terminal
   ```
+
+# Misc. Tools
+
+* https://dataurl.sveinbjorn.org/#dataurlmaker was used to create data URLs
