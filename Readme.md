@@ -1,5 +1,5 @@
 ﻿![block-art Screenshot](https://raw.githubusercontent.com/MaulingMonkey/mmk.terminal/master/.projnfo/screenshots/block-art.png)
-![rl-maze Screenshot](https://raw.githubusercontent.com/MaulingMonkey/mmk.terminal/master/.projnfo/screenshots/rl-mzae.png)
+![rl-maze Screenshot](https://raw.githubusercontent.com/MaulingMonkey/mmk.terminal/master/.projnfo/screenshots/rl-maze.png)
 
 # mmk.terminal
 
