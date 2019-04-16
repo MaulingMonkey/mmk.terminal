@@ -1,4 +1,8 @@
 namespace mmk.terminal {
+    /** @hidden */ const RS           = "\x1E"; // Record Seperator
+    /** @hidden */ const sizeOfFloat  = 4;
+    /** @hidden */ const vertsPerQuad = 4;
+
     /** @hidden */
     const vertexComponents = (
         +2 // Position
@@ -74,6 +78,7 @@ namespace mmk.terminal {
             
             this.ib = this.createIB();
             this.vb = this.createVB(background);
+            this.state = new Array(this.buffW * this.buffH);
             this.fontTexture = new Texture(webgl, font.image);
             
             const {r,g,b,a} = background;
@@ -95,6 +100,11 @@ namespace mmk.terminal {
         public set (left: number, top: number, char: string, foreground: string, background: string) {
             if (left < 0 || this.buffW <= left) return;
             if (top  < 0 || this.buffH <= top ) return;
+            const bufferIndex = (left + top * this.buffW);
+            const state = `${char}${RS}${foreground}${RS}${background}`;
+            if (this.state[bufferIndex] === state) return; // Already set
+            this.state[bufferIndex] = state;
+
             const verts = new Float32Array(4 * vertexComponents);
             const fg = toPremulRGBA(foreground);
             const bg = toPremulRGBA(background);
@@ -111,7 +121,7 @@ namespace mmk.terminal {
             );
             const {webgl} = this;
             webgl.bindBuffer(webgl.ARRAY_BUFFER, this.vb);
-            webgl.bufferSubData(webgl.ARRAY_BUFFER, 4 * 4 * vertexComponents * (left + top * this.buffW), verts);
+            webgl.bufferSubData(webgl.ARRAY_BUFFER, vertsPerQuad * sizeOfFloat * vertexComponents * bufferIndex, verts);
         }
 
         /**
@@ -159,6 +169,7 @@ namespace mmk.terminal {
         /** @hidden */ private webgl:          WebGLRenderingContext;
         /** @hidden */ private ib:             WebGLBuffer;
         /** @hidden */ private vb:             WebGLBuffer;
+        /** @hidden */ private state:          (string | undefined)[];
         /** @hidden */ private fontTexture:    Texture;
         /** @hidden */ private program:        Program<shaders.terminal.Uniforms>;
 
