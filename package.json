@@ -1,6 +1,6 @@
 {
     "name": "@maulingmonkey/terminal",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Terminal rendering API for roguelikes, fake OSes, or whatever else.",
     "license": "Apache-2.0",
     "keywords": [
